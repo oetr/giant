@@ -3,7 +3,7 @@
 #########################
 
 # Defines the location of the EZ-USB SDK
-ZTEXPREFIX=./ztex-sdk-20101006/
+ZTEXPREFIX=./ztex/
 
 # The name of the jar archive
 JARTARGET=

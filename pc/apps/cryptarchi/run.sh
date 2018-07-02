@@ -1,5 +1,7 @@
 #!/bin/sh
 
+ZTEX_SDK="../../uc/ztex/java/FWLoader"
+
 FIRMWARE=$1
 shift
 FPGA_BS=$1
@@ -14,8 +16,8 @@ then
     fi
 	
 	echo ""
-    echo "../../uc/ztex-sdk-20101006/java/FWLoader -c -f -uu $FIRMWARE -uf $FPGA_BS"
-	../../../uc/ztex-sdk-20101006/java/FWLoader -c -f -uu $FIRMWARE -uf $FPGA_BS
+    echo "${ZTEX_SDK}/FWLoader -c -f -uu $FIRMWARE -uf $FPGA_BS"
+	${ZTEX_SDK}/FWLoader -c -f -uu $FIRMWARE -uf $FPGA_BS
 fi
 
 echo ""

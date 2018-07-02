@@ -33,13 +33,8 @@
 #include <dbgstream.h>
 #include <util.h>
 
-#if defined WIN32 || defined _WIN32 || defined WIN64 || defined _WIN64 || defined WINDOWS
-#include <windows.h>
-#include <process.h>
-#else
 #include <sys/mman.h>
 #include <unistd.h>
-#endif
 
 typedef struct {
     void * addr;

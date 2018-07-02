@@ -15,6 +15,7 @@
  * with this program; see the file COPYING. If not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 0211-1307, USA.
  */
+#include <stdio.h>
 
 #ifndef DBG_DBG_H
 #define DBG_DBG_H

@@ -900,8 +900,8 @@ std::pair<unsigned int, unsigned int> dsp_find_first_peak(const timeseries_t& t,
 	unsigned long max_pos = offset, min_pos = offset;
 	bool find_max = true, max_found = false, min_found = false;
 	
-	const unsigned int offset_real = std::min(offset, t.size()-1);
-	const unsigned int end = std::min(offset + length - 1, t.size() - 1);
+	const unsigned int offset_real = std::min((unsigned long)offset, t.size()-1);
+	const unsigned int end = std::min((unsigned long)(offset + length - 1), t.size() - 1);
 	
 	minmax = std::make_pair(offset_real, end);
 	

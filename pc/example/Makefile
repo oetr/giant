@@ -1,6 +1,7 @@
 CC = gcc
 CPP = g++
-CFLAGS = -c -Wall -O3
+CFLAGS = -c  -Wall -O3 -std=c++11
+LDFLAGS = -L/usr/lib/x86_64-linux-gnu -lm
 
 ifneq (,$(findstring CYGWIN,$(shell uname)))
   USING_CYGWIN = true
@@ -32,8 +33,7 @@ ifdef USING_CYGWIN
 	#COPY_DLLS = cp $(DLLS) $(OUTPUT_DIR)
 	CLEANUP_DLLS = rm -f $(OUTPUT_DIR)/*.dll
 else
-	CFLAGS += -DWIN32 
-	LDFLAGS += -lusb -lfftw3
+	LDFLAGS += -lusb -lfftw3 -lpthread
 endif
 
 .SUFFIXES: .cpp .c .cpp.o .c.o
@@ -52,7 +52,7 @@ all: $(EXECUTABLES)
 .c.o:	
 	@echo $<
 	@$(CC) $(INCLUDEDIRS) $(CFLAGS) $< -o $@
-	
+
 .cpp.o:
 	@echo $<
 	@$(CPP) $(INCLUDEDIRS) $(CFLAGS) $< -o $@

@@ -870,9 +870,9 @@ int main(int argc, char *argv[])
 	//rfid_adc_test(fpga);
 	//rfid_test();
 	//ddr_test();
-	//smartcard_single_trace();
+	smartcard_single_trace();
 	//smartcard_adc_test();
-	smartcard_pattern_test();
+	//smartcard_pattern_test();
 	//pattern_detector_test();
 	
 	// cleanup

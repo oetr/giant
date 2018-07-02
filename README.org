@@ -41,4 +41,3 @@ http://www.ztex.de/usb-fpga-1/pwr-1.0.e.html
 -> demo: Contains demo code for muC (and possibly other devices) to test fault injection
 |
 |--> avr_crt_rsa: CRT-RSA implementation for Atmega163 ("funcard") with ISO7816 interface using SOSSE
-

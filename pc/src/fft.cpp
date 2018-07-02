@@ -74,7 +74,7 @@ bool fft::transform(const timeseries_t& v, spectrum_t& V)
 	}
 	
 	// copy input
-	for(unsigned int i = 0; i < std::min(v.size(), N); i++)
+	for(unsigned int i = 0; i < std::min((unsigned int)v.size(), N); i++)
 		in[i] = v[i];
 		
 	if(N > v.size())
@@ -114,7 +114,7 @@ bool fft::inverse_transform(const spectrum_t& V, timeseries_t& v)
 	}
 	
 	// copy input
-	for(unsigned int i = 0; i < std::min(V.size(), N_dft); i++)
+	for(unsigned int i = 0; i < std::min((unsigned int)V.size(), N_dft); i++)
 	{
 		out[i][0] = V[i].real();
 		out[i][1] = V[i].imag();
@@ -175,7 +175,7 @@ bool fft::psd(const timeseries_t& v, timeseries_t& sd)
 	}
 	
 	// copy input
-	for(unsigned int i = 0; i < std::min(v.size(), N); i++)
+	for(unsigned int i = 0; i < std::min((unsigned int)v.size(), N); i++)
 		in[i] = v[i];
 		
 	// eventually add zero padding

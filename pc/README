@@ -1,0 +1,14 @@
+PC API and example program
+==========================
+Note that running this code only makes sense if you have a GIAnT device
+
+Building (under cygwin):
+========================
+
+1. Dependencies:
+- fftw3
+- libusb
+
+2. Cd to 'example' and run 'make'
+
+3. To test, run 'run_test.sh' in 'example'

@@ -1,0 +1,53 @@
+GIAnt, the Generic Implementation ANalysis Toolkit
+   
+Visit www.sourceforge.net/projects/giant/ for the original source code.
+   
+Copyright (C) 2010 - 2011 David Oswald <david.oswald@rub.de>
+Copyright (C) 2018 Peter Samarin <peter.samarin@gmail.com>
+
+GIAnT (Generic Implementation ANalysis Toolkit) is a platform for physical 
+analysis of (embedded) devices. Primarily designed for hardware security 
+analyses, it is built around an FPGA-based board for fault injection and 
+side-channel analysis. 
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License version 3 as
+published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, see http://www.gnu.org/licenses/.
+
+* Hardware
+This project uses the USB-FPGA-Module 1.11c, made by ZTEX (ztex.de):
+http://www.ztex.de/usb-fpga-1/usb-fpga-1.11.e.html
+http://www.ztex.de/usb-fpga-1/pwr-1.0.e.html
+
+* Directory layout
+-> fpga: Contains VHDL sources, schematics and documentation for GIAnt
+|
+|--> doc
+|--> schematics
+|--> vhdl
+
+-> pc: C++-API for control of GIAnT via USB
+|
+|--> doc
+|--> example
+|--> include
+|--> src
+
+-> uc: Firmware for the Cypress microcontroller and ZTEX-SDK
+|
+|--> doc
+|--> ztex: ztex sdk
+
+-> demo: Contains demo code for muC (and possibly other devices) to test fault injection
+|
+|--> avr_crt_rsa: CRT-RSA implementation for Atmega163 ("funcard") with ISO7816
+|                 interface using SOSSE
+

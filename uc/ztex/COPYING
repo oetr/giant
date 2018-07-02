@@ -1,0 +1,27 @@
+The ZTEX SDK is released under these licenses:
+
+1. Hardware part (HDL files for the FPGA including templates for constraints): 
+   Solderpad Hardware License version 0.51, which is derived from Apache
+   License Version 2.0. This non-copyleft license allows to modify and
+   distribute the work without publishing source code. Full license text 
+   is in SHL-0.51 and can be obtained from http://solderpad.org/licenses/SHL-0.51
+   
+2. Software part
+
+   a) Examples and default firmwares, i.e. software and firmware in 'examples'
+   and 'default' directories: Apache License version 2.0, non-restrictive as 
+   described above. This license in compatible to (L)GPL-3, i.e. derived work
+   can also be published under GPL. Full license text is in APACHE-2.0 and can
+   be obtained from http://www.apache.org/licenses/LICENSE-2.0.
+   
+   b) Firmware Kits, the API's and the utilities are dual licensed and can be
+   used under Mozilla Public License Version 2.0 or under GNU General Public
+   License version 3. MPL is a per-file copyleft license. Contributions in
+   form of new files are not considered as modifications and source code does
+   not need to be published if the work is distributed in some form. Full
+   license texts are in MPL-2.0 and GPL-3 and can be obtained from 
+   http://mozilla.org/MPL/2.0/ and  http://www.gnu.org/licenses/. Also see
+   http://mozilla.org/MPL/2.0/FAQ.
+
+Other licenses are available on request.
+

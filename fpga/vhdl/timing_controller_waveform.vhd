@@ -90,7 +90,6 @@ architecture behavioral of timing_controller_waveform is
 
   -- integer constants
   constant ZERO : unsigned(TIME_REGISTER_WIDTH-1 downto 0) := (others => '0');
-  constant ONE  : unsigned(TIME_REGISTER_WIDTH-1 downto 0) := (others => '0');
 
   -- width of internal timer registers in byte
   constant WIDTH_BYTES : positive := TIME_REGISTER_WIDTH/8;
@@ -212,8 +211,11 @@ begin
   end process;
 
   -- FSM next state decoding
-  NEXT_STATE_DECODE : process(state, arm, trigger, count, pulse_delay_i, pulse_length_i, polarity_i,
-                              a_reg, in_data, instr_pointer, instr_count, out_data, arm_prev, trigger_prev)
+  NEXT_STATE_DECODE : process(arm, arm_prev, count,
+                              instr_count, instr_pointer,
+                              out_data, polarity_i,
+                              pulse_delay_i, pulse_length_i,
+                              state, trigger, trigger_prev)
   begin
     -- default is to stay in current state
     next_state <= state;
@@ -232,17 +234,21 @@ begin
     a_reg              <= (others => '0');
 
     case state is
+
+
       when IDLE =>
         count_reset <= '1';
 
         if (arm = '1' and arm_prev = '0') then
-                                        -- load config register
+          -- load config register
           a_reg              <= (others => '0');
-                                        -- prepare instruction pointer
+          -- prepare instruction pointer
           instr_pointer_next <= to_unsigned(3, instr_pointer'length);
 
           next_state <= ARMING_LOAD_CONFIG;
         end if;
+
+
       when ARMING_LOAD_CONFIG =>
         -- store config register values
         polarity_i_next  <= out_data(0);
@@ -253,6 +259,8 @@ begin
 
         ready      <= '0';
         next_state <= ARMING_LOAD_DELAY;
+
+
       when ARMING_LOAD_DELAY =>
         -- store delay register values
         pulse_delay_i_next <= unsigned(out_data);
@@ -262,7 +270,10 @@ begin
 
         ready      <= '0';
         next_state <= ARM_DONE;
+
+
       when ARM_DONE =>
+        count_reset <= '1';
         -- check for trigger becoming valid
         if (trigger = '1' and trigger_prev = '0') then
           next_state <= TRIGGERED;
@@ -276,6 +287,8 @@ begin
 
         armed <= '1';
         ready <= '0';
+
+
       when TRIGGERED =>
         -- wait until pulse delay reached       
         if count = pulse_delay_i then
@@ -284,8 +297,7 @@ begin
           next_state <= TRIGGERED_COUNTING;
         end if;
 
-        count_reset <= '1';
-        ready       <= '0';
+        ready <= '0';
 
         -- store length register values
         pulse_length_i_next <= unsigned(out_data);
@@ -293,6 +305,7 @@ begin
         -- load next pulse delay value
         instr_pointer_next <= instr_pointer + to_unsigned(1, instr_pointer'length);
         a_reg              <= std_logic_vector(instr_pointer + to_unsigned(1, instr_pointer'length));
+
 
       when TRIGGERED_COUNTING =>
         -- wait until pulse delay reached
@@ -303,9 +316,10 @@ begin
           pulse_delay_i_next <= unsigned(out_data);
         end if;
 
-
         a_reg <= std_logic_vector(instr_pointer);
         ready <= '0';
+
+
       when INJECTED =>
         next_state  <= INJECTED_COUNTING;
         ready       <= '0';
@@ -313,9 +327,11 @@ begin
 
         instr_pointer_next <= instr_pointer + to_unsigned(1, instr_pointer'length);
         a_reg              <= std_logic_vector(instr_pointer + to_unsigned(1, instr_pointer'length));
+
+
       when INJECTED_COUNTING =>
         if count = pulse_length_i then
-                                        -- check if at end of instruction memory
+          -- check if at end of instruction memory
           if instr_pointer - to_unsigned(0, instr_pointer'length) > instr_count then
             next_state <= IDLE;
           else
@@ -326,6 +342,8 @@ begin
         a_reg        <= std_logic_vector(instr_pointer);
         inject_fault <= not polarity_i;
         ready        <= '0';
+
+
     end case;
   end process;
 end;

@@ -1,7 +1,7 @@
 ##############################################################
 #
-# Xilinx Core Generator version 12.1
-# Date: Thu May 26 10:54:47 2011
+# Xilinx Core Generator version 14.7
+# Date: Wed Sep 30 10:49:10 2015
 #
 ##############################################################
 #
@@ -9,6 +9,10 @@
 #  Xilinx CORE Generator IP GUI. It is strongly recommended
 #  that you do not manually alter this file as it may cause
 #  unexpected and unsupported behavior.
+#
+##############################################################
+#
+#  Generated from component: xilinx.com:ip:mult_gen:11.2
 #
 ##############################################################
 #
@@ -28,11 +32,11 @@ SET package = ftg256
 SET removerpms = false
 SET simulationfiles = Behavioral
 SET speedgrade = -3
-SET verilogsim = true
+SET verilogsim = false
 SET vhdlsim = true
 # END Project Options
 # BEGIN Select
-SELECT Multiplier family Xilinx,_Inc. 11.2
+SELECT Multiplier xilinx.com:ip:mult_gen:11.2
 # END Select
 # BEGIN Parameters
 CSET ccmimp=Distributed_Memory
@@ -57,5 +61,8 @@ CSET use_custom_output_width=true
 CSET userounding=false
 CSET zerodetect=false
 # END Parameters
+# BEGIN Extra information
+MISC pkg_timestamp=2013-07-22T11:36:26Z
+# END Extra information
 GENERATE
-# CRC: 96dd074f
+# CRC: dcfc6f9d

@@ -1,7 +1,7 @@
 ##############################################################
 #
-# Xilinx Core Generator version 12.1
-# Date: Sun Feb 06 15:07:29 2011
+# Xilinx Core Generator version 14.7
+# Date: Wed Sep 30 10:46:30 2015
 #
 ##############################################################
 #
@@ -9,6 +9,10 @@
 #  Xilinx CORE Generator IP GUI. It is strongly recommended
 #  that you do not manually alter this file as it may cause
 #  unexpected and unsupported behavior.
+#
+##############################################################
+#
+#  Generated from component: xilinx.com:ip:blk_mem_gen:4.1
 #
 ##############################################################
 #
@@ -28,7 +32,7 @@ SET package = ftg256
 SET removerpms = false
 SET simulationfiles = Behavioral
 SET speedgrade = -3
-SET verilogsim = true
+SET verilogsim = false
 SET vhdlsim = true
 # END Project Options
 # BEGIN Select
@@ -85,5 +89,8 @@ CSET write_depth_a=256
 CSET write_width_a=32
 CSET write_width_b=8
 # END Parameters
+# BEGIN Extra information
+MISC pkg_timestamp=2013-10-13T18:46:09Z
+# END Extra information
 GENERATE
-# CRC: d4fa22b4
+# CRC: 7c36845b

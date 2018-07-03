@@ -83,7 +83,7 @@ architecture behavioral of sc_controller is
 	-- constants
 
 	-- length of isp_clk cycle in ns (default to 2 MHz)
-	constant PERIOD_SCCLK : positive := 500;
+	constant PERIOD_SCCLK : positive := 250;
 	
 	-- converted to ticks at CLK_PERIOD
 	constant PERIOD_SCCLK_VAL : positive := PERIOD_SCCLK/CLK_PERIOD;

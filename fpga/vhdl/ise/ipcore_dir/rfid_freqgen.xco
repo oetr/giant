@@ -1,7 +1,7 @@
 ##############################################################
 #
-# Xilinx Core Generator version 12.1
-# Date: Thu May 26 12:07:59 2011
+# Xilinx Core Generator version 14.7
+# Date: Wed Sep 30 10:47:27 2015
 #
 ##############################################################
 #
@@ -9,6 +9,10 @@
 #  Xilinx CORE Generator IP GUI. It is strongly recommended
 #  that you do not manually alter this file as it may cause
 #  unexpected and unsupported behavior.
+#
+##############################################################
+#
+#  Generated from component: xilinx.com:ip:dds_compiler:4.0
 #
 ##############################################################
 #
@@ -28,11 +32,11 @@ SET package = ftg256
 SET removerpms = false
 SET simulationfiles = Behavioral
 SET speedgrade = -3
-SET verilogsim = true
+SET verilogsim = false
 SET vhdlsim = true
 # END Project Options
 # BEGIN Select
-SELECT DDS_Compiler family Xilinx,_Inc. 4.0
+SELECT DDS_Compiler xilinx.com:ip:dds_compiler:4.0
 # END Select
 # BEGIN Parameters
 CSET amplitude_mode=Full_Range
@@ -131,5 +135,8 @@ CSET rfd=false
 CSET sclr_pin=false
 CSET spurious_free_dynamic_range=36
 # END Parameters
+# BEGIN Extra information
+MISC pkg_timestamp=2012-08-28T14:48:35Z
+# END Extra information
 GENERATE
-# CRC: e2674ef9
+# CRC: a15cbedb

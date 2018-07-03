@@ -14,6 +14,9 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 
 You should have received a copy of the GNU General Public License along with this program; if not, see http://www.gnu.org/licenses/.
 
+* Software
+sudo apt install sdcc 
+
 * Hardware
 This project uses the USB-FPGA-Module 1.11c, made by ZTEX (ztex.de):
 http://www.ztex.de/usb-fpga-1/usb-fpga-1.11.e.html

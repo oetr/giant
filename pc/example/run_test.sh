@@ -4,7 +4,7 @@ make
 
 cd ../../uc
 
-if [ "$1" == "-f" ]
+if "$1" == "-f"
 then
 	make distclean
 fi

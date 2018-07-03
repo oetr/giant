@@ -784,8 +784,8 @@ begin
   -- 0: w_en
   -- 1: arm
   -- 2: trigger force
-  fi_w_en    <= fi_control(0);
-  fi_arm     <= fi_control(1);
+  fi_w_en        <= fi_control(0);
+  fi_arm         <= fi_control(1);
   -- trigger if enabled in resp. control register
   -- 0: PIC programmer trigger
   -- 1: RFID trigger
@@ -793,7 +793,8 @@ begin
   -- 3: ADC trigger
   -- 4: Smartcard data sent trigger 
   -- 5: Smartcard data begin sending trigger
-  fi_trigger <= (pic_programming and fi_trigger_control(0)) or
+  fi_trigger_ext <= sc_pin4;
+  fi_trigger     <= (pic_programming and fi_trigger_control(0)) or
                 (rfid_trigger and fi_trigger_control(1)) or
                 (fi_trigger_ext and fi_trigger_control(2)) or
                 (sc_data_sent_trigger and fi_trigger_control(4)) or
@@ -954,8 +955,8 @@ begin
 
   -- LEDs
   led(0) <= clk_locked;
-  led(1) <= '0';
-  led(2) <= '0';
+  led(1) <= fi_armed;
+  led(2) <= fi_trigger;
   led(3) <= sc_sw2;
 
   -- GPIO

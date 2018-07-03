@@ -26,7 +26,7 @@
 // C++ includes
 #include <vector>
 #include <utility>
-
+#include <unistd.h>
 // Project includes
 #include <fault_fpga_spartan6.h>
 #include <dbg.h>

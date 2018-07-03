@@ -262,3 +262,10 @@ void dac::setEnabled(const bool on)
 	
 	return;
 }
+
+bool dac::getEnabled()
+{
+	fault_fpga_spartan6* fpga = fault_fpga_spartan6::instance();
+	
+	return fpga->readRegister(fault_fpga_spartan6::DAC_CONTROL);
+}

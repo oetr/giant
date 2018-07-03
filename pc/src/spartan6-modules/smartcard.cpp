@@ -19,6 +19,7 @@
 !*/
 
 #include <smartcard.h>
+#include <dac.h>
 
 smartcard::smartcard() : powered(false)
 {
@@ -69,9 +70,25 @@ byte_buffer_t smartcard::resetAndGetAtr()
 	setPower(true);
 	
 	// Wait for card becoming ready
+	int timeout = 1000;
+	int counter = 0;
 	while(!isReady())
 	{
-		::usleep(1e3);
+	    ::usleep(1e3);
+	    counter++;
+	    // smartcard is not reacting => reset the DAC
+	    // and restore it to the initial status
+	    if (counter == timeout) {
+		dac vfi;
+		bool status = vfi.getEnabled();
+		vfi.setEnabled(false);
+		vfi.setEnabled(true);
+		// restore to the initial dac status
+		vfi.setEnabled(status);
+		counter = 0;
+		setPower(false);
+		setPower(true);
+	    }
 	}
 	
 	// read ATR
@@ -148,7 +165,7 @@ byte_buffer_t smartcard::handleT0Command(const byte_buffer_t& tx)
 			// wait for data
 			while(!isReady()) 
 			{
-				::usleep(1e3);
+			    ::usleep(1e3);
 			}
 			
 			result = readRxData();		

@@ -128,6 +128,11 @@ class dac
 		 * @param on True to enable DAC, otherwise false
 		 */
 		void setEnabled(const bool on);
+
+		/**
+		 * Get state of DAC
+		 */
+		bool getEnabled();
 		
 		/**
 		 * Set test mode state of DAC

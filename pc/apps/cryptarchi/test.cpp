@@ -58,15 +58,15 @@ static void smartcard_test_nofault(fault_fpga_spartan6* fpga)
 	
 	// Voltages
 	const double v_step = 12.0/256.0;
-	const double v_normal = 2.5;
+	const double v_normal = 4.2;
 	const uint8_t v_dd = static_cast<uint8_t>(-v_normal/v_step + 128.0);
 	vfi.setLowVoltage(v_dd);
 	vfi.setHighVoltage(v_dd);
 	vfi.setOffVoltage(128);
 	
 	// trigger
-	vfi.setTriggerEnableState(fault_fpga_spartan6::FI_TRIGGER_CONTROL_SC_SENT, true);
-	vfi.setTriggerEnableState(fault_fpga_spartan6::FI_TRIGGER_CONTROL_SC_START_SEND, false);
+	// trigger (use pin)
+	vfi.setTriggerEnableState(fault_fpga_spartan6::FI_TRIGGER_CONTROL_EXT1, true);
 
 	// get status
 	uint8_t status = sc.getStatus();
@@ -97,9 +97,10 @@ static void smartcard_test_nofault(fault_fpga_spartan6* fpga)
 		util::hexdump(dbg::out(dbg::info), data);
 		dbg::out(dbg::info) << std::endl;
 		
-		byte_buffer_t rx = sc.handleRxTx(test_apdu);
+		byte_buffer_t rx = sc.handleRxTx(test_apdu, 1000);
+		int rx_size = rx.size();
 		
-		dbg::out(dbg::info) << "RX:  ";
+		dbg::out(dbg::info) << "RX(" << rx_size << "): ";
 		util::hexdump(dbg::out(dbg::info), rx);
 		dbg::out(dbg::info) << std::endl;
 		
@@ -124,8 +125,8 @@ static void smartcard_test_toggle_v(fault_fpga_spartan6* fpga)
 	
 	// SETTINGS
 	const double v_step = 12.0/256.0;
-	const double v_normal = 2.5;
-	const double v_vfi_noeffect = 2.0;
+	const double v_normal = 4.2;
+	const double v_vfi_noeffect = 4.2;
 	const double v_vfi_effect = 1.0;
 	const double t_offset = 259825;
 	const double t_width = 30;
@@ -138,7 +139,7 @@ static void smartcard_test_toggle_v(fault_fpga_spartan6* fpga)
 		data[i] = i;
 	}
 	
-	byte_buffer_t test_apdu = smartcard::makeT1Apdu(0x80, 0x42, 0x0, 0x0,
+	byte_buffer_t test_apdu = smartcard::makeT1Apdu(0x80, 0x40, 0x0, 0x0,
 		data, 16);
 	
 	// END SETTINGS
@@ -169,8 +170,6 @@ static void smartcard_test_toggle_v(fault_fpga_spartan6* fpga)
 	vfi.setOffVoltage(128);
 	
 	// trigger
-	vfi.setTriggerEnableState(fault_fpga_spartan6::FI_TRIGGER_CONTROL_SC_SENT, false);
-	vfi.setTriggerEnableState(fault_fpga_spartan6::FI_TRIGGER_CONTROL_SC_START_SEND, false);
 	vfi.setTriggerEnableState(fault_fpga_spartan6::FI_TRIGGER_CONTROL_EXT1, true);
 
 	// get status
@@ -235,8 +234,8 @@ static void smartcard_test_sweep(fault_fpga_spartan6* fpga)
 	
 	// SETTINGS
 	const double v_step = 12.0/256.0;
-	const double v_normal = 2.5;
-	const double v_vfi_noeffect = 2.0;
+	const double v_normal = 4.2;
+	const double v_vfi_noeffect = 4.2;
 	const double v_vfi_effect = 1.0;
 	const double t_offset = 259825;
 	
@@ -249,7 +248,7 @@ static void smartcard_test_sweep(fault_fpga_spartan6* fpga)
 	}
 	
 	
-	byte_buffer_t test_apdu = smartcard::makeT1Apdu(0x80, 0x42, 0x0, 0x0,
+	byte_buffer_t test_apdu = smartcard::makeT1Apdu(0x80, 0x40, 0x0, 0x0,
 		data, 16);
 	
 	// END SETTINGS
@@ -280,8 +279,6 @@ static void smartcard_test_sweep(fault_fpga_spartan6* fpga)
 	vfi.setOffVoltage(128);
 	
 	// trigger
-	vfi.setTriggerEnableState(fault_fpga_spartan6::FI_TRIGGER_CONTROL_SC_SENT, false);
-	vfi.setTriggerEnableState(fault_fpga_spartan6::FI_TRIGGER_CONTROL_SC_START_SEND, false);
 	vfi.setTriggerEnableState(fault_fpga_spartan6::FI_TRIGGER_CONTROL_EXT1, true);
 
 	// get status
@@ -339,13 +336,13 @@ static void smartcard_test_sweep_v(fault_fpga_spartan6* fpga)
 	
 	// SETTINGS
 	const double v_step = 12.0/256.0;
-	const double v_normal = 2.5;
-	const double v_vfi_noeffect = 2.0;
+	const double v_normal = 4.2;
+	const double v_vfi_noeffect = 4.2;
 	
 	byte_buffer_t data;
 	data.resize(16, 0);
 	
-	byte_buffer_t test_apdu = smartcard::makeT1Apdu(0x80, 0x40, 0x0, 0x0,
+	byte_buffer_t test_apdu = smartcard::makeT1Apdu(0x80, 0x02, 0x0, 0x0,
 		data, 16);
 	
 	for(unsigned int i = 0; i < 16; i++)
@@ -353,7 +350,7 @@ static void smartcard_test_sweep_v(fault_fpga_spartan6* fpga)
 		data[i] = i;
 	}
 	
-	byte_buffer_t test_apdu_xor_s = smartcard::makeT1Apdu(0x80, 0x42, 0x0, 0x0,
+	byte_buffer_t test_apdu_xor_s = smartcard::makeT1Apdu(0x80, 0x40, 0x0, 0x0,
 		data, 16);
 	
 	// END SETTINGS
@@ -383,8 +380,6 @@ static void smartcard_test_sweep_v(fault_fpga_spartan6* fpga)
 	vfi.setOffVoltage(128);
 	
 	// trigger
-	vfi.setTriggerEnableState(fault_fpga_spartan6::FI_TRIGGER_CONTROL_SC_SENT, false);
-	vfi.setTriggerEnableState(fault_fpga_spartan6::FI_TRIGGER_CONTROL_SC_START_SEND, false);
 	vfi.setTriggerEnableState(fault_fpga_spartan6::FI_TRIGGER_CONTROL_EXT1, true);
 
 	// get status

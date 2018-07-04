@@ -3,16 +3,12 @@ Primarily designed for hardware security analyses, it is built around an FPGA-ba
 This project has been supported by the German Federal Ministry of Education and Research BMBF (grant 01IS10026A, Project EXSET).
 
 This is a fork from www.sourceforge.net/projects/giant/.
+
+Notable changes here:
+- Allow triggering of fault injection over the EXT1 pin of the smartcard
+- Increase the clock frequency of the target to 4MHz from 1MHz
+- An example of a fault scan over an AES implementation
    
-Copyright (C) 2010 - 2011 David Oswald <david.oswald@rub.de>
-
-Copyright (C) 2018 Peter Samarin <peter.samarin@gmail.com>
-
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this program; if not, see http://www.gnu.org/licenses/.
 
 * Software
 sudo apt install sdcc 
@@ -44,3 +40,13 @@ http://www.ztex.de/usb-fpga-1/pwr-1.0.e.html
 -> demo: Contains demo code for muC (and possibly other devices) to test fault injection
 |
 |--> avr_crt_rsa: CRT-RSA implementation for Atmega163 ("funcard") with ISO7816 interface using SOSSE
+* License and Copyright
+Copyright (C) 2010 - 2011 David Oswald <david.oswald@rub.de>
+
+Copyright (C) 2018 Peter Samarin <peter.samarin@gmail.com>
+
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 3 as published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program; if not, see http://www.gnu.org/licenses/.
